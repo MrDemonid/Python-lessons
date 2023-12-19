@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 from register import RegisterForm
+from login import LoginForm
 
 app = Flask(__name__)
 app.config["SECRET_KEY"]= "MY SECRET KEYS FOR HOME COMPUTER"
@@ -27,9 +28,15 @@ def showStydents():
 def regNewUser():
     frm=RegisterForm()
     if frm.validate_on_submit():
-        print(frm.data["name"], frm.data["mail"])
+        print("register: ", frm.data["name"], frm.data["mail"], frm.data["password"])
     return render_template('register.html', form=frm)
 
+@app.route("/auth", methods = ["GET", "POST"])
+def loginUser():
+    frm = LoginForm()
+    if frm.validate_on_submit():
+        print("auth: ", frm.data["name"], frm.data["password"])
+    return render_template('auth.html', form=frm)
 
 
 

@@ -11,7 +11,8 @@ class Chromosome:
     def __init__(self, size, gene_pool):
         self.rating = 0
         self.size = size
-        self.genes = bytearray(size)
+        null_str = '                                                '
+        self.genes = bytearray(null_str, 'utf-8')
         if gene_pool is not None:
             self.set_random_genes(gene_pool)
     '''
@@ -156,11 +157,15 @@ def print_population(population):
 '''
 Генофонд – это строка-справочник, которая содержит все возможные гены. Его и финальную строку
 (будем теперь говорить по-научному: хромосому) мы закодируем в байтовые массивы
+
+абвгдеёжзийклмнопрстуфхцчшщьъэюяФБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЬБЭЮЯ
 '''
-gene_pool = bytearray(b'abcdefghijklmnopqrstuvwxyz ') #если хотите по - русски то ставите сюда весь русский алфавит
+str_pool = 'abcdefghijklmnopqrstuvwxyz '
+gene_pool = bytearray(str_pool, 'utf-8') #если хотите по - русски то ставите сюда весь русский алфавит
 
 # final_chromo = bytearray(b'i love geekbrains and chess and games') #целевая фраза
-final_chromo = bytearray(b'i love geekbrains') #целевая фраза
+str_final = 'i love geekbrains'
+final_chromo = bytearray(str_final, 'utf-8') #целевая фраза
 
 chromo_size = len(final_chromo)
 population_size = 20
